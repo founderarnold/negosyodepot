@@ -371,3 +371,25 @@ body { background:#e8f4fb; padding:14px; color:#092f68; }
   .footer-brand { grid-column:1/-1; }
   .footer-bottom { flex-direction:column; gap:7px; }
 }
+
+/* Keep mobile navigation fully usable above the persistent quick dock. */
+@media(max-width:920px) {
+  #app { overflow:visible; }
+  .site-header { z-index:50; }
+  .mega-navigation {
+    top:100%;
+    left:-16px;
+    right:-16px;
+    width:auto;
+    max-height:none;
+    height:calc(100dvh - 76px);
+    overflow-x:hidden;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    padding:12px 20px calc(96px + env(safe-area-inset-bottom));
+    z-index:60;
+  }
+}
+@media(max-width:560px) {
+  .mega-navigation { height:calc(100dvh - 72px); }
+}
