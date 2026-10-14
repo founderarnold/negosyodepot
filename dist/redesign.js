@@ -36,8 +36,13 @@
   };
 
   window.mobileDock = function redesignedMobileDock() {
-    const links = [["Home", "#/", "⌂"], ["Opportunities", "#/explore", "▣"], ["Products", "https://www.marketplaceph.com/", "⬡", true], ["Investors", "#/investor-funder", "↗"]];
-    return `<nav class="mobile-dock redesigned-dock" aria-label="Quick navigation">${links.map(([label, href, icon, external]) => `<a class="dock-item ${current === href.slice(1) ? "active" : ""}" href="${href}" ${external ? 'target="_blank" rel="noopener noreferrer"' : ""}><span class="dock-symbol" aria-hidden="true">${icon}</span><span>${label}</span></a>`).join("")}<button class="dock-item dock-more" type="button" data-open-main-menu aria-label="Open more sections"><span class="dock-symbol" aria-hidden="true">•••</span><span>More</span></button></nav>`;
+    const links = [
+      { label: "Home", href: "#/", icon: '<svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg>' },
+      { label: "Find", href: "#/find", icon: '<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>' },
+      { label: "Business", href: "#/explore", aria: "Buy or look for business packages", icon: '<svg viewBox="0 0 24 24"><path d="M3 9h18v11H3zM2 9l2-6h16l2 6M8 20v-6h8v6M7 9V6m5 3V6m5 3V6"/></svg>' },
+      { label: "Investors", href: "#/investor-funder", icon: '<svg viewBox="0 0 24 24"><path d="M3 20h18M5 17V9h4v8m3 0V4h4v13m3 0v-6h2v6"/></svg>' }
+    ];
+    return `<nav class="mobile-dock redesigned-dock" aria-label="Quick navigation">${links.map(({label,href,icon,aria}) => `<a class="dock-item ${current === href.slice(1) ? "active" : ""}" href="${href}" ${aria ? `aria-label="${aria}" title="${aria}"` : ""}><span class="dock-symbol" aria-hidden="true">${icon}</span><span>${label}</span></a>`).join("")}<button class="dock-item dock-more" type="button" data-open-main-menu aria-label="Open more sections"><span class="dock-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></span><span>More</span></button></nav>`;
   };
 
   document.addEventListener("click", event => {
