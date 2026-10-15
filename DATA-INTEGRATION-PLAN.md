@@ -57,3 +57,7 @@ This SQL has not been applied to a database. The Sites workflow provisions D1 an
 ## Current release gate
 
 **Not ready to apply a production migration or announce launch.** The schema is ready for review, but provisioning it in production would require deploying a server runtime and would change the public Site. The private staging project is still empty, the FLAME PH identity contract is missing, and there is no approved data source to process. FLAME AI is handled by the external link requested by the user.
+
+## Post-signup workspace and PWA follow-up (16 October 2026)
+
+The local application now includes a goal-oriented member workspace, private profile builder/preview, and installable web-app shell. See [`POST-SIGNUP-IMPLEMENTATION.md`](POST-SIGNUP-IMPLEMENTATION.md) for the implementation status and test evidence. Profile API persistence, member directory publication, real auth, messaging and notifications remain dependent on the identity and backend contracts listed above. The additive proposal in `database/migrations/0002_member_profiles.sql` has not been applied; it defaults profiles to private and draft. No staging or production database has been changed.
