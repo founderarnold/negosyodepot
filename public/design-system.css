@@ -600,3 +600,47 @@ body { background:#e8f4fb; padding:14px; color:#092f68; }
   .profile-form .form-grid { grid-template-columns:1fr; }
   .profile-form .field.full { grid-column:auto; }
 }
+
+/* Desktop header fixes: readable two-column dropdowns, and the header actions always fit. */
+@media(min-width:921px) {
+  .nav .mega-menu > .mega-panel { display:block; width:max-content; min-width:440px; max-width:min(560px,calc(100vw - 32px)); max-height:none; overflow:visible; padding:18px 20px; }
+  .nav .more-menu > .mega-panel { min-width:300px; }
+  .nav .mega-groups { display:grid; grid-template-columns:repeat(2,minmax(190px,1fr)); gap:14px 24px; }
+  .nav .mega-group { min-width:0; }
+  .nav .mega-group h3 { margin:0 0 6px 8px; color:#536a85; font-size:11px; letter-spacing:.06em; text-transform:uppercase; }
+  .nav .mega-group > a { display:block; padding:8px; border-radius:8px; white-space:normal; }
+  .nav .mega-group > a:hover { background:#f2f7fa; }
+  .nav .mega-group > a strong { font-size:13px; color:#182c3d; }
+  .header-row { flex-wrap:nowrap; }
+  .brand-lockup,.header-actions { flex:none; }
+  .mega-navigation { min-width:0; }
+}
+@media(min-width:921px) and (max-width:1360px) {
+  .header-row { gap:10px; }
+  .mega-navigation { gap:10px; }
+  .nav .top-nav-link,.mega-menu > summary { padding-left:2px; padding-right:2px; font-size:11px; }
+  .header-actions { gap:6px; }
+  .header-actions .btn { padding:8px 10px; }
+}
+@media(min-width:921px) and (max-width:1360px) {
+  .brand-lockup { gap:10px; }
+  .flame-brand-copy strong { font-size:13px; letter-spacing:.04em; }
+}
+@media(min-width:921px) and (max-width:1240px) {
+  .mega-navigation > .top-nav-link[href="#/partners"] { display:none; }
+}
+@media(min-width:921px) and (max-width:1120px) {
+  .mega-navigation > .top-nav-link[href*="bizconsult-ai"] { display:none; }
+  .flame-brand-copy { display:none; }
+}
+@media(min-width:921px) and (max-width:1240px) {
+  .mega-navigation > .more-menu { display:flex; }
+  .nav .more-menu > .mega-panel { right:0; left:auto; max-height:min(70vh,560px); overflow:auto; }
+  .nav .more-links a { display:block; padding:7px 8px; border-radius:8px; white-space:normal; font-size:13px; }
+}
+@media(min-width:921px) and (max-width:1240px) {
+  .mega-navigation > .top-nav-link[href="#/dashboard"] { display:none; }
+}
+@media(min-width:921px) and (max-width:1010px) {
+  .mega-navigation > .top-nav-link[href="#/investor-funder"] { display:none; }
+}

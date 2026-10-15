@@ -1,12 +1,12 @@
-const CACHE_NAME = "negosyodepot-shell-v2";
+const CACHE_NAME = "negosyodepot-shell-v3";
 const SHELL = [
   "/",
   "/index.html",
   "/styles-fulfillment.css?v=4",
-  "/design-system.css?v=15",
+  "/design-system.css?v=16",
   "/app-fulfillment.js?v=6",
   "/extras-fulfillment.js?v=1",
-  "/redesign.js?v=12",
+  "/redesign.js?v=13",
   "/pwa.js?v=2",
   "/manifest.webmanifest",
   "/assets/app-icon-192.png",
