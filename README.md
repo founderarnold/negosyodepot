@@ -7,7 +7,7 @@ NegosyoDepot.com, part of the FLAME PH MSME ecosystem with [flameph.org](https:/
 - **`public/`** is the website itself: the plain HTML, CSS and JavaScript app built with Codex (hash routes such as `/#/fulfillment`). It is served exactly as it was on ChatGPT Sites.
 - **`app/` and `lib/`** are a small Next.js layer that adds the FLAME PH shared login. NegosyoDepot has no database; the signed-in member is kept in a signed cookie.
 - **`original-source/`** holds the older source copies Codex kept at the top of the folder, and **`docs/`** its planning notes. `database/` holds draft database tables that are not in use yet.
-- The `live-baseline` tag marks the code as it was last committed in the Codex folder; the commit after it adds Codex's later changes that were not committed there.
+- Commit `6beb401` is the code as it was last committed in the Codex folder; the commit after it adds Codex's later changes that were not committed there.
 
 ## One FLAME PH account
 
