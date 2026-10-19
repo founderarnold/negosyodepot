@@ -1,0 +1,1 @@
+export function GET(){return Response.json({enabled:process.env.NEXT_PUBLIC_FLAME_ADS_ENABLED==="true",apiUrl:process.env.NEXT_PUBLIC_FLAME_ADS_API_URL??"https://api.ads.flameph.org"},{headers:{"Cache-Control":"no-store"}})}

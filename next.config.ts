@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 const csp = [
   "default-src 'self'", "base-uri 'none'", "object-src 'none'", "frame-ancestors 'none'", "form-action 'self'",
   "script-src 'self'", "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com", "font-src 'self' https://fonts.gstatic.com data:",
-  "img-src 'self' https://images.unsplash.com data:", "connect-src 'self'", "frame-src 'none'", "manifest-src 'self'", "upgrade-insecure-requests",
+  "img-src 'self' https://images.unsplash.com data:", "connect-src 'self' https://api.ads.flameph.org", "frame-src 'none'", "manifest-src 'self'", "upgrade-insecure-requests",
 ].join("; ");
 
 const config: NextConfig = {
