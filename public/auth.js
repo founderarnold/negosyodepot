@@ -43,6 +43,28 @@
 
   window.addEventListener("hashchange", (e) => { if (e.isTrusted) handleLoginPage(); });
 
+  // The member's FLAME PH badge in their workspace (only when flameph.org shares it: consent 3, 3 months, records).
+  // Built with textContent only, never HTML from the server.
+  const showBadge = () => {
+    const b = auth.member && auth.member.badge;
+    const main = /^#\/dashboard(\?|$)/.test(location.hash) && document.querySelector(".dash-main");
+    if (!b || !main || main.querySelector("[data-flame-badge]")) return;
+    const box = document.createElement("div");
+    box.className = "panel";
+    box.setAttribute("data-flame-badge", "");
+    const h = document.createElement("h3");
+    h.textContent = `FLAME PH ${b.level} badge${b.verified ? " · Verified" : ""}`;
+    const top = Object.entries(b.categories || {}).sort((x, y) => y[1] - x[1]).slice(0, 3).map((x) => x[0]).join(", ");
+    const p = document.createElement("p");
+    p.textContent = [`${b.counted} confirmed ${b.counted === 1 ? "deal" : "deals"} on FLAME PH`, top && `mostly ${top}`, b.memberSince && `member since ${b.memberSince}`].filter(Boolean).join(" · ");
+    const note = document.createElement("p");
+    note.style.fontSize = "12px";
+    note.textContent = "A status badge from FLAME PH, not a certification or a guarantee. You can turn it off in your FLAME PH Settings (consent 3).";
+    box.append(h, p, note);
+    main.prepend(box);
+  };
+  new MutationObserver(showBadge).observe(document.documentElement, { childList: true, subtree: true });
+
   // Sign in / Sign up buttons go to flameph.org instead of the old preview sign-in.
   document.addEventListener(
     "click",
