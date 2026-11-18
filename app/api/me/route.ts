@@ -9,7 +9,7 @@ type Badge = { level: string; verified: boolean; counted: number; categories: Re
  * Kept at most 5 minutes here, and dropped at once when flameph.org sends a notice.
  */
 const badgeFor = (sub: string) => unstable_cache(async (): Promise<Badge | null> => {
-  const res = await hubCall<{ badges?: ({ sub: string; shown: boolean } & Partial<Badge>)[] }>("/api/ecosystem/badges", "badges", { subs: [sub] });
+  const res = await hubCall<{ badges?: ({ sub: string; shown: boolean } & Partial<Badge>)[] }>("/api/ecosystem/badges", "badges", { subs: [sub] }, 4000);
   const b = res?.badges?.find((x) => x.sub === sub);
   return b?.shown && b.level ? { level: b.level, verified: !!b.verified, counted: b.counted ?? 0, categories: b.categories ?? {}, memberSince: b.memberSince ?? null } : null;
 }, ["flame-badge", sub], { revalidate: 300, tags: [BADGE_TAG] })();
@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
   let refresh: string | null = null;
   let ended = false;
   if (session && now - session.chk > SESSION_CHECK_SECONDS) {
-    const status = await hubCall<{ active?: boolean }>("/api/sso/status", "sso-status", { sub: session.sub, since: session.since });
+    const status = await hubCall<{ active?: boolean }>("/api/sso/status", "sso-status", { sub: session.sub, since: session.since }, 4000);
     if (status?.active === false) { session = null; ended = true; }
     else if (status?.active) refresh = signSession({ ...session, chk: now }, session.exp);
     // flameph.org unreachable: keep the session and try again on the next page.
