@@ -5,8 +5,9 @@ NegosyoDepot.com, part of the FLAME PH MSME ecosystem with [flameph.org](https:/
 ## How it is built
 
 - **`public/`** is the website itself: the plain HTML, CSS and JavaScript app built with Codex (hash routes such as `/#/fulfillment`). It is served exactly as it was on ChatGPT Sites.
-- **`app/` and `lib/`** are a small Next.js layer that adds the FLAME PH shared login. NegosyoDepot has no database; the signed-in member is kept in a signed cookie.
+- **`app/` and `lib/`** are a small Next.js layer that adds the FLAME PH shared login. The current live experience still keeps the signed-in member in a signed cookie.
 - **`original-source/`** holds the older source copies Codex kept at the top of the folder, and **`docs/`** its planning notes. `database/` holds draft database tables that are not in use yet.
+- **`supabase/`** contains the additive PostgreSQL/RLS foundation for the new NegosyoDepot-owned fulfillment backend. It is source only until an isolated staging project is configured, migrated, and tested.
 - Commit `6beb401` is the code as it was last committed in the Codex folder; the commit after it adds Codex's later changes that were not committed there.
 
 ## One FLAME PH account
@@ -23,6 +24,12 @@ On a visitor's first visit the site quietly asks flameph.org whether they are al
 | `/api/me` | Who is signed in, for the site's scripts |
 
 It is off until `SSO_SECRET` is set. flameph.org only returns visitors to `www.negosyodepot.com` / `negosyodepot.com`, so login works once the domain points to this deployment.
+
+## Fulfillment backend safety gate
+
+The Supabase migration is for a new NegosyoDepot staging project only. Do not apply it to FLAME PH or MarketplacePH. Do not enable `NEXT_PUBLIC_FULFILLMENT_ENABLED` until RLS tests, private-storage tests, migration rollback rehearsal, backup/restore verification, and owner release approval have passed.
+
+Evidence object paths use `user-id/application-id/filename`. The `fulfillment-evidence` bucket is private, accepts only approved document/image types, and has no browser delete policy so review and audit evidence cannot be silently removed.
 
 ## Deploy on Vercel
 
