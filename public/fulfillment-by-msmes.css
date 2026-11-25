@@ -1,0 +1,53 @@
+.fbm-hero { padding:clamp(48px,7vw,92px) 0; background:linear-gradient(135deg,#f1fbf4 0%,#fff 52%,#edf5ff 100%); border-bottom:1px solid #dce8e1; }
+.fbm-hero-grid { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr); gap:clamp(28px,5vw,72px); align-items:center; }
+.fbm-hero h1 { max-width:780px; margin:.25em 0; font-size:clamp(38px,5.7vw,72px); line-height:1.02; letter-spacing:-.045em; color:#102d4f; }
+.fbm-hero p { max-width:760px; font-size:clamp(16px,1.5vw,20px); line-height:1.65; color:#405a73; }
+.fbm-status { margin-top:22px; padding:14px 16px; border:1px solid #bed8c6; border-radius:12px; background:#fff; font-size:14px!important; }
+.fbm-boundary-card { display:grid; gap:10px; padding:22px; border:1px solid #cfe0d4; border-radius:20px; background:rgba(255,255,255,.92); box-shadow:0 18px 45px rgba(18,59,48,.1); }
+.fbm-boundary-card>span { margin-bottom:4px; color:#527067; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+.fbm-boundary-card>div { padding:15px; border-radius:13px; background:#f4f8f6; }
+.fbm-boundary-card b,.fbm-boundary-card small { display:block; }
+.fbm-boundary-card b { color:#087a38; }
+.fbm-boundary-card small { margin-top:4px; line-height:1.45; color:#546b7d; }
+.fbm-role-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.fbm-role-card { display:flex; min-height:180px; gap:18px; padding:24px; border:1px solid #d9e4df; border-radius:18px; background:#fff; color:#173a67; box-shadow:0 10px 28px rgba(15,55,83,.06); transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease; }
+.fbm-role-card:hover,.fbm-role-card:focus-visible { transform:translateY(-3px); border-color:#72b88d; box-shadow:0 16px 34px rgba(15,55,83,.11); }
+.fbm-role-card span:last-child { display:flex; flex-direction:column; align-items:flex-start; }
+.fbm-role-icon { display:grid; flex:0 0 48px; width:48px; height:48px; place-items:center; border-radius:14px; background:#eaf7ee; color:#087a38; font-size:24px; }
+.fbm-role-card strong { font-size:20px; }
+.fbm-role-card small { margin:9px 0 18px; line-height:1.55; color:#526b7f; }
+.fbm-role-card b { margin-top:auto; color:#087a38; font-size:13px; }
+.fbm-process { display:grid; grid-template-columns:.8fr 1.2fr; gap:48px; align-items:start; }
+.fbm-process ol { display:grid; gap:10px; margin:0; padding:0; list-style:none; }
+.fbm-process li { display:flex; gap:14px; padding:16px; border:1px solid #dbe6e1; border-radius:14px; background:#fff; }
+.fbm-process li>b { display:grid; flex:0 0 36px; width:36px; height:36px; place-items:center; border-radius:50%; background:#087a38; color:#fff; }
+.fbm-process li span,.fbm-process li strong,.fbm-process li small { display:block; }
+.fbm-process li small { margin-top:3px; color:#5a7082; }
+.fbm-role-hero { padding-bottom:58px; }
+.fbm-role-hero h1 { max-width:900px; font-size:clamp(36px,5vw,64px); }
+.fbm-outcome-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.fbm-outcome-grid article { padding:22px; border:1px solid #dce7e2; border-radius:16px; background:#fff; }
+.fbm-outcome-grid article>span { display:grid; width:36px; height:36px; place-items:center; border-radius:50%; background:#e8f6ec; color:#087a38; font-weight:800; }
+.fbm-outcome-grid h3 { margin:16px 0 8px; color:#153a60; }
+.fbm-outcome-grid p { color:#536b7e; line-height:1.6; }
+.fbm-ownership { margin-top:24px; padding:20px 22px; border-left:5px solid #087a38; border-radius:8px 14px 14px 8px; background:#eff8f2; }
+.fbm-ownership p { margin:5px 0 0; color:#3e5a50; }
+.fbm-handoff { display:grid; grid-template-columns:1.25fr .75fr; gap:28px; align-items:center; }
+
+@media (max-width:900px) {
+  .fbm-hero-grid,.fbm-process,.fbm-handoff { grid-template-columns:1fr; }
+  .fbm-outcome-grid { grid-template-columns:1fr; }
+}
+
+@media (max-width:640px) {
+  .fbm-hero { padding:38px 0; }
+  .fbm-hero h1 { font-size:clamp(34px,11vw,48px); }
+  .fbm-role-grid { grid-template-columns:1fr; }
+  .fbm-role-card { min-height:0; padding:18px; }
+  .fbm-boundary-card { padding:16px; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .fbm-role-card { transition:none; }
+  .fbm-role-card:hover,.fbm-role-card:focus-visible { transform:none; }
+}
