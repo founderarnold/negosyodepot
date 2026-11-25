@@ -7,7 +7,13 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test:db-contract": "node scripts/validate-fulfillment-migration.mjs"
+    "test:db-contract": "node scripts/validate-fulfillment-migration.mjs",
+    "local:supabase:start": "supabase start",
+    "local:supabase:stop": "supabase stop",
+    "local:supabase:reset": "supabase db reset",
+    "local:supabase:env": "node scripts/configure-local-supabase.mjs",
+    "test:db-local": "node scripts/test-local-supabase.mjs",
+    "test:fulfillment-local": "node scripts/smoke-local-fulfillment.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.119.2",
@@ -19,6 +25,7 @@
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
+    "supabase": "3.4.0",
     "typescript": "^5"
   },
   "overrides": {

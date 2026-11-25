@@ -2,6 +2,22 @@
 
 This foundation belongs to a new NegosyoDepot-owned Supabase project. Never apply it to the FLAME PH or MarketplacePH projects.
 
+## Local-only development
+
+The checked-in Supabase configuration uses project ID `negosyodepot-phase1` and an isolated 5732x port range so it can run beside the existing local FLAME PH, MarketplacePH, and POS stacks. It is not linked to a hosted Supabase project.
+
+1. Start Docker Desktop.
+2. Run `npm install`.
+3. Run `npm run local:supabase:start`.
+4. Run `npm run local:supabase:env`. This writes local connection values and a synthetic SSO signing key to the ignored `.env.local`; the command never prints their values.
+5. Run `npm run test:db-local` to rebuild the disposable database from migrations and execute the structural and behavioral RLS tests.
+6. Run `npm run test:db-contract` for the static migration contract checks.
+7. Run `npm run test:fulfillment-local` to verify identity linking, idempotent application creation, and owner listing through the server APIs.
+
+Use only synthetic data locally. `NEXT_PUBLIC_FULFILLMENT_ENABLED=true` belongs only in the ignored local environment. Hosted environments remain disabled until the separate release gate is approved.
+
+To stop only this project, run `npm run local:supabase:stop` from this worktree. Do not stop or reuse another local Supabase project for these tests.
+
 ## Before applying the migration
 
 1. Create an isolated staging project with synthetic data only.
