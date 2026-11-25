@@ -567,6 +567,74 @@ exception when others then
 end;
 $$;
 
+create or replace function public.create_fulfillment_application(
+  actor_user_id uuid,
+  application_role public.fulfillment_role,
+  request_idempotency_key text,
+  request_correlation_id uuid,
+  target_organization_id uuid default null
+)
+returns public.fulfillment_applications
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  result public.fulfillment_applications;
+  inserted boolean := false;
+begin
+  if actor_user_id is null or request_idempotency_key is null or char_length(request_idempotency_key) < 16 then
+    raise exception 'invalid_application_request';
+  end if;
+
+  if target_organization_id is not null and not exists (
+    select 1 from public.organizations o
+    where o.id = target_organization_id
+      and (
+        o.created_by = actor_user_id
+        or exists (
+          select 1 from public.organization_memberships m
+          where m.organization_id = o.id
+            and m.user_id = actor_user_id
+            and m.status = 'active'
+            and m.role in ('owner', 'administrator', 'editor')
+        )
+      )
+  ) then
+    raise exception 'organization_access_denied';
+  end if;
+
+  insert into public.fulfillment_applications
+    (created_by, organization_id, role, idempotency_key)
+  values
+    (actor_user_id, target_organization_id, application_role, request_idempotency_key)
+  on conflict (created_by, idempotency_key) do nothing
+  returning * into result;
+
+  if result.id is not null then
+    inserted := true;
+  else
+    select * into result
+    from public.fulfillment_applications
+    where created_by = actor_user_id and idempotency_key = request_idempotency_key;
+  end if;
+
+  if inserted then
+    insert into public.fulfillment_application_status_history
+      (application_id, from_status, to_status, actor_user_id, correlation_id)
+    values
+      (result.id, null, 'draft', actor_user_id, request_correlation_id);
+
+    insert into public.audit_events
+      (actor_user_id, actor_type, action, entity_type, entity_id, correlation_id, source_system, changed_fields)
+    values
+      (actor_user_id, 'member', 'fulfillment_application.created', 'fulfillment_application', result.id::text, request_correlation_id, 'negosyodepot', array['role','status']);
+  end if;
+
+  return result;
+end;
+$$;
+
 alter table public.organizations enable row level security;
 alter table public.organization_memberships enable row level security;
 alter table public.platform_role_assignments enable row level security;
@@ -683,6 +751,8 @@ grant execute on function public.is_organization_member(uuid, public.organizatio
 grant execute on function public.can_access_fulfillment_application(uuid) to authenticated;
 grant execute on function public.can_edit_fulfillment_application(uuid) to authenticated;
 grant execute on function public.fulfillment_application_has_role(uuid, public.fulfillment_role) to authenticated;
+revoke execute on function public.create_fulfillment_application(uuid, public.fulfillment_role, text, uuid, uuid) from public, anon, authenticated;
+grant execute on function public.create_fulfillment_application(uuid, public.fulfillment_role, text, uuid, uuid) to service_role;
 
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values (

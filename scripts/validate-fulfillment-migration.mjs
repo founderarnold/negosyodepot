@@ -49,6 +49,7 @@ for (const policy of requiredPolicies) {
 if (!/values\s*\(\s*'fulfillment-evidence',[\s\S]*?false,/i.test(sql)) failures.push("evidence bucket is not explicitly private");
 if (/create policy\s+\S+\s+on\s+(?:public\.)?\S+\s+for delete/i.test(sql)) failures.push("unexpected browser delete policy");
 if (!/revoke all on public\.integration_outbox, public\.integration_inbox from anon, authenticated/i.test(sql)) failures.push("integration queues are not closed to browser roles");
+if (!/revoke execute on function public\.create_fulfillment_application[\s\S]*?from public, anon, authenticated/i.test(sql)) failures.push("application creation RPC is not closed to browser roles");
 if (/eyJ[A-Za-z0-9_-]{20,}|service_role\s*=|password\s*=\s*['"][^'"]+/i.test(sql)) failures.push("possible secret literal in migration");
 
 if (failures.length) {

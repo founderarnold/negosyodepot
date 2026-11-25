@@ -89,6 +89,43 @@ end;
 $$;
 
 reset role;
+
+set local role service_role;
+select (public.create_fulfillment_application(
+  '11111111-1111-4111-8111-111111111111',
+  'brand_owner',
+  'owner-1-rpc-draft-0001',
+  'c1111111-1111-4111-8111-111111111111',
+  'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'
+)).id;
+reset role;
+
+do $$
+declare
+  rpc_application_id uuid;
+begin
+  select id into rpc_application_id
+  from public.fulfillment_applications
+  where created_by = '11111111-1111-4111-8111-111111111111'
+    and idempotency_key = 'owner-1-rpc-draft-0001';
+  if rpc_application_id is null then
+    raise exception 'server application RPC did not create a record';
+  end if;
+  if not exists (
+    select 1 from public.fulfillment_application_status_history
+    where application_id = rpc_application_id and to_status = 'draft'
+  ) then
+    raise exception 'server application RPC did not create status history';
+  end if;
+  if not exists (
+    select 1 from public.audit_events
+    where entity_id = rpc_application_id::text and action = 'fulfillment_application.created'
+  ) then
+    raise exception 'server application RPC did not create audit history';
+  end if;
+end;
+$$;
+
 insert into public.platform_role_assignments (user_id, role, granted_by, reason)
 values (
   '33333333-3333-4333-8333-333333333333',
@@ -102,7 +139,7 @@ select set_config('request.jwt.claim.sub', '33333333-3333-4333-8333-333333333333
 
 do $$
 begin
-  if (select count(*) from public.fulfillment_applications) <> 2 then
+  if (select count(*) from public.fulfillment_applications) <> 3 then
     raise exception 'reviewer cannot see all applications';
   end if;
   if not exists (select 1 from storage.objects where id = 'ea111111-1111-4111-8111-111111111111') then
