@@ -1,0 +1,83 @@
+:root{
+  --accessible-font:"Arial Narrow","Liberation Sans Narrow",Arial,sans-serif;
+  --ink:#082e5c;
+  --muted:#40576c;
+  --green:#055f2d;
+  --green2:#e8f5ec;
+}
+
+html{font-size:17px}
+body,button,input,select,textarea{font-family:var(--accessible-font)}
+body{color:var(--ink);font-size:17px;line-height:1.65}
+h1,h2,h3,h4,.brand-name,.hero-brand-wordmark,.feed-avatar{font-family:var(--accessible-font);letter-spacing:0}
+p,li,.hero-copy,.page-hero p{font-size:16px;line-height:1.65}
+small,.fine-print{font-size:14px;line-height:1.5}
+.section-kicker,.eyebrow{font-size:14px;line-height:1.45;letter-spacing:.07em}
+
+button,.btn,[role="button"],input[type="submit"],input[type="button"]{
+  min-height:48px;
+  font-family:var(--accessible-font);
+  font-size:16px!important;
+  font-weight:700;
+  line-height:1.2;
+}
+button:focus-visible,.btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid #f3b700!important;
+  outline-offset:3px;
+}
+.btn-primary,.hero .btn-primary,.mobile-signup-btn,.construction .btn{background:#055f2d;color:#fff}
+.btn-soft{color:#044c24}
+
+.nav .top-nav-link,.mega-menu>summary,.mega-navigation .more-links>a{font-family:var(--accessible-font);font-size:15px!important;line-height:1.35}
+.nd-header-wordmark strong{color:#055f2d}
+.mega-group>a strong{font-size:15px!important}.mega-group>a small{font-size:14px!important}
+.home-shortcut{font-size:15px;line-height:1.3;min-height:92px}
+.home-shortcut .shortcut-icon,.engine-icon{width:50px;height:50px;font-size:24px}
+.engine-card{min-height:210px}.engine-card h3{font-size:19px}.engine-card p{font-size:16px;line-height:1.55}.engine-card .link-arrow{font-size:16px}
+.business-path-copy h3{font-size:20px}.business-path-copy p,.business-path-note{font-size:16px;line-height:1.55}.business-path-copy .link-arrow{font-size:16px}
+
+.social-panel h2{font-size:20px}.social-panel>a{font-size:16px;line-height:1.4;min-height:52px}.social-panel>a span{font-size:14px}
+.social-panel p,.feed-composer p,.feed-body{font-size:16px;line-height:1.6}
+.feed-disclosure{font-size:15px;line-height:1.5}
+.feed-card-header strong{font-size:17px}.feed-card-header span,.feed-kind{font-size:14px}
+.feed-tag{font-size:15px}.feed-counts{font-size:14px}.feed-actions button{font-size:16px!important;min-height:54px}
+.feed-comments p{font-size:16px}.feed-comment-form small{font-size:14px}.feed-comment-form input{font-size:16px;min-height:48px}
+
+.footer h4{font-family:var(--accessible-font);font-size:18px;line-height:1.3}.footer p,.footer a{font-size:16px;line-height:1.55}.footer a{min-height:46px;display:flex;align-items:center;margin:0}.footer-bottom{font-size:15px;line-height:1.5}
+.construction p,.eco-strip .eco-text,.eco-name,.eco-app{font-size:16px}.eco-strip .eco-title{font-size:20px}.eco-badge{font-size:13px}
+.footer,.eco-strip,.home-funder-section,.ecosystem-banner{color:#fff}.footer p,.footer a,.footer-bottom,.eco-strip .eco-text{color:#dbe7f2}
+.home-funder-section h2,.home-funder-section h3,.home-funder-section p,.ecosystem-banner h2,.ecosystem-banner p{color:#fff!important}
+
+@media(max-width:820px){
+  .mobile-dock.redesigned-dock{min-height:104px;align-items:stretch;gap:2px;padding:8px 4px calc(9px + env(safe-area-inset-bottom));background:#fff}
+  .redesigned-dock .dock-item{min-height:84px;padding:3px 2px 5px;gap:2px;border-radius:14px;color:#234861;font-family:var(--accessible-font);font-size:15px!important;font-weight:700;line-height:1.08;white-space:normal}
+  .redesigned-dock .dock-item .dock-symbol{display:block;width:56px;height:56px;border:0;border-radius:0;background-color:transparent;background-image:url('/assets/mobile-nav-icons-v2.webp');background-repeat:no-repeat;background-size:500% 100%;filter:none}
+  .redesigned-dock .dock-item:nth-child(1) .dock-symbol{background-position:0 0}
+  .redesigned-dock .dock-item:nth-child(2) .dock-symbol{background-position:25% 0}
+  .redesigned-dock .dock-item:nth-child(3) .dock-symbol{width:56px;height:56px;background-color:transparent;background-position:50% 0}
+  .redesigned-dock .dock-item:nth-child(4) .dock-symbol{background-position:75% 0}
+  .redesigned-dock .dock-item:nth-child(5) .dock-symbol{background-position:100% 0}
+  .redesigned-dock .dock-symbol svg{display:none}
+  .redesigned-dock .dock-item>span:last-child{font-family:var(--accessible-font);font-size:15px!important;font-weight:700;line-height:1.08!important;letter-spacing:0!important;overflow:visible;white-space:normal}
+  .redesigned-dock .dock-item.active{color:#044c24;background:#e9f6ed;box-shadow:inset 0 0 0 2px #16733c}
+  body{padding-bottom:calc(112px + env(safe-area-inset-bottom))}.main{padding-bottom:96px}
+  .context-subnav a{font-size:16px;min-height:48px}.context-subnav strong{font-size:16px}
+}
+
+@media(max-width:560px){
+  html{font-size:17px}.container{width:calc(100% - 24px)}
+  .header-row{height:74px;flex-wrap:nowrap;gap:5px}.mobile-header-actions{display:flex!important;flex:0 0 auto;order:2;gap:5px}.header-row>.icon-btn{order:3;width:44px;height:48px;margin:0;font-size:0!important}.header-row>.icon-btn:after{font-size:28px}.mobile-search-btn{display:none}
+  .flame-brand-copy,.brand-divider{display:none}.brand-lockup{min-width:0;flex:1}.nd-header-wordmark span{font-size:18px}.nd-header-wordmark small{font-family:var(--accessible-font);font-size:10px;letter-spacing:.03em}
+  .mobile-login-btn,.mobile-signup-btn{min-height:48px;padding:0 10px;font-family:var(--accessible-font);font-size:16px!important;border-radius:10px}
+  .hero-copy{font-size:17px}.hero-actions{display:grid;grid-template-columns:1fr}.hero-actions .btn{width:100%}
+  .business-path-card{grid-template-columns:128px 1fr}.business-path-copy{padding:16px}.business-path-copy h3{font-size:19px}.business-path-copy p{font-size:16px}.business-path-note{font-size:15px}
+  .feed-actions{grid-template-columns:repeat(2,1fr)}.feed-actions button{font-size:16px!important}.feed-actions button span{display:inline}
+  .footer-grid{grid-template-columns:1fr!important;gap:8px!important}.footer h4{font-size:19px}.footer p,.footer a{font-size:17px}.footer a{min-height:48px}.footer-bottom{font-size:15px}
+  .redesigned-dock .dock-item{font-size:14px!important}.redesigned-dock .dock-item>span:last-child{font-size:14px!important}.redesigned-dock .dock-item .dock-symbol{width:52px;height:52px}
+}
+
+@media(max-width:360px){
+  .mobile-login-btn,.mobile-signup-btn{font-size:15px!important;padding:0 7px}.nd-header-wordmark small{display:none}
+  .redesigned-dock .dock-item>span:last-child{font-size:13px!important}.redesigned-dock .dock-item .dock-symbol{width:48px;height:48px}
+  .business-path-card{grid-template-columns:1fr}.business-path-visual{min-height:190px}
+}

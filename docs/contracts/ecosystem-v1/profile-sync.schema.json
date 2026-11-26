@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.flameph.org/ecosystem/v1/profile-sync.schema.json",
+  "title": "FLAME PH ecosystem profile resolve request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["request_id", "subject", "consent_id", "purpose", "fields", "client_context"],
+  "properties": {
+    "request_id": { "type": "string", "minLength": 20, "maxLength": 64 },
+    "subject": { "type": "string", "pattern": "^urn:flameph:subject:[0-9a-fA-F-]{36}$" },
+    "consent_id": { "type": "string", "minLength": 20, "maxLength": 64 },
+    "purpose": { "enum": ["negosyodepot.profile_prefill", "negosyodepot.membership_eligibility", "marketplaceph.profile_prefill"] },
+    "fields": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["display_name", "avatar_url", "email", "email_verified", "membership_status", "membership_tier", "chapter", "organization_identity"] }
+    },
+    "client_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["client_id", "correlation_id"],
+      "properties": {
+        "client_id": { "type": "string", "minLength": 3, "maxLength": 80 },
+        "correlation_id": { "type": "string", "minLength": 20, "maxLength": 64 }
+      }
+    }
+  }
+}

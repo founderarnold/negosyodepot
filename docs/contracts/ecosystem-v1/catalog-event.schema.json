@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.flameph.org/ecosystem/v1/catalog-event.schema.json",
+  "title": "MarketplacePH to NegosyoDepot catalog/inventory event envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "event_type", "occurred_at", "producer", "environment", "schema_version", "aggregate_type", "aggregate_id", "aggregate_version", "sequence", "correlation_id", "data", "data_classification"],
+  "properties": {
+    "event_id": { "type": "string", "minLength": 20, "maxLength": 64 },
+    "event_type": { "enum": ["marketplace.catalog.updated", "marketplace.catalog.unpublished", "marketplace.price.changed", "marketplace.inventory.version_changed", "marketplace.reservation.accepted", "marketplace.reservation.rejected"] },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "producer": { "const": "marketplaceph" },
+    "environment": { "enum": ["staging", "production"] },
+    "schema_version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" },
+    "aggregate_type": { "enum": ["listing", "sku", "reservation"] },
+    "aggregate_id": { "type": "string", "minLength": 20, "maxLength": 64 },
+    "aggregate_version": { "type": "integer", "minimum": 1 },
+    "sequence": { "type": "integer", "minimum": 1 },
+    "correlation_id": { "type": "string", "minLength": 20, "maxLength": 64 },
+    "causation_id": { "type": ["string", "null"], "maxLength": 64 },
+    "data_classification": { "enum": ["public", "internal", "confidential"] },
+    "data": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["listing_id", "sku_id"],
+      "properties": {
+        "listing_id": { "type": "string", "minLength": 20, "maxLength": 64 },
+        "sku_id": { "type": "string", "minLength": 20, "maxLength": 64 },
+        "publication_state": { "enum": ["draft", "published", "paused", "unpublished", "archived"] },
+        "price": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["amount_minor", "currency", "price_version", "effective_at"],
+          "properties": {
+            "amount_minor": { "type": "integer", "minimum": 0 },
+            "currency": { "const": "PHP" },
+            "price_version": { "type": "integer", "minimum": 1 },
+            "effective_at": { "type": "string", "format": "date-time" }
+          }
+        },
+        "inventory_version": { "type": "integer", "minimum": 1 },
+        "reservation_id": { "type": "string", "minLength": 20, "maxLength": 64 },
+        "reason_code": { "type": "string", "maxLength": 80 }
+      }
+    }
+  }
+}

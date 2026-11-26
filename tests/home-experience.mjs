@@ -44,9 +44,17 @@ try {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     assert(overflow === 0, `${width}px: anonymous home has ${overflow}px horizontal overflow`);
     if (width <= 820) {
+      const labels = await page.locator(".mobile-dock .dock-item > span:last-child").allTextContents();
+      assert(JSON.stringify(labels) === JSON.stringify(["Home", "Find", "Fulfillment", "My Workspace", "More"]), `${width}px: mobile journeys are not task-oriented`);
       const sizes = await page.locator(".mobile-dock .dock-item").evaluateAll(items => items.map(item => ({ height: item.getBoundingClientRect().height, font: Number.parseFloat(getComputedStyle(item).fontSize) })));
       assert(sizes.every(size => size.height >= 44), `${width}px: mobile dock has a target under 44px`);
-      assert(sizes.every(size => size.font >= 10.5), `${width}px: mobile dock text is still too small`);
+      assert(sizes.every(size => size.font >= 13), `${width}px: mobile dock text is still too small`);
+      const iconSizes = await page.locator(".mobile-dock .dock-symbol").evaluateAll(items => items.map(item => item.getBoundingClientRect().width));
+      assert(iconSizes.every(size => size >= 48), `${width}px: mobile dock icons are still too small`);
+      const footerSizes = await page.locator(".footer a").evaluateAll(items => items.filter(item => item.getClientRects().length).map(item => Number.parseFloat(getComputedStyle(item).fontSize)));
+      assert(footerSizes.every(size => size >= 16), `${width}px: footer links are still too small`);
+      const buttonSizes = await page.locator(".btn").evaluateAll(items => items.filter(item => item.getClientRects().length).map(item => Number.parseFloat(getComputedStyle(item).fontSize)));
+      assert(buttonSizes.every(size => size === 16), `${width}px: visible action buttons do not share the 16px size`);
     }
     assert(!errors.length, `${width}px: ${errors.join("; ")}`);
     await context.close();
