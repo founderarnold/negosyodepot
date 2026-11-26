@@ -8,6 +8,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test:db-contract": "node scripts/validate-fulfillment-migration.mjs",
+    "test:baseline:live": "node scripts/capture-live-baseline.mjs",
     "local:supabase:start": "supabase start",
     "local:supabase:stop": "supabase stop",
     "local:supabase:reset": "supabase db reset",
@@ -25,8 +26,12 @@
     "server-only": "^0.0.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.1",
+    "@playwright/test": "1.65.1",
     "@types/node": "^20",
     "@types/react": "^19",
+    "chrome-launcher": "1.2.3",
+    "lighthouse": "13.6.0",
     "supabase": "3.4.0",
     "typescript": "^5"
   },

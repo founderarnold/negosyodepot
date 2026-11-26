@@ -1,0 +1,178 @@
+{
+  "capturedAt": "2026-11-26T10:17:42.470Z",
+  "target": "https://www.negosyodepot.com",
+  "expectedCommit": "243abf0430d80a1dc5ea12ac74e3826b17bd7fb0",
+  "routes": [
+    {
+      "name": "home",
+      "path": "/",
+      "status": 200,
+      "title": "External authentication navigation observed",
+      "h1": "Find New Opportunities. Grow Together."
+    },
+    {
+      "name": "explore",
+      "path": "/#/explore",
+      "status": 200,
+      "title": "NegosyoDepot — Find a business you can start",
+      "h1": "Find your next business opportunity."
+    },
+    {
+      "name": "business finder",
+      "path": "/#/find",
+      "status": 200,
+      "title": "NegosyoDepot — Find a business you can start",
+      "h1": "What kind of negosyo fits you?"
+    },
+    {
+      "name": "fulfillment",
+      "path": "/#/fulfillment",
+      "status": 200,
+      "title": "NegosyoDepot — Find a business you can start",
+      "h1": "Local fulfillment that helps your negosyo move."
+    },
+    {
+      "name": "workspace",
+      "path": "/#/dashboard",
+      "status": 200,
+      "title": "NegosyoDepot — Find a business you can start",
+      "h1": "Your next business move starts here."
+    },
+    {
+      "name": "sign in",
+      "path": "/#/login",
+      "status": 200,
+      "title": "Log in · FLAME PH",
+      "h1": "Log in"
+    },
+    {
+      "name": "privacy",
+      "path": "/#/privacy",
+      "status": 200,
+      "title": "NegosyoDepot — Find a business you can start",
+      "h1": "Privacy overview"
+    },
+    {
+      "name": "terms",
+      "path": "/#/terms",
+      "status": 200,
+      "title": "NegosyoDepot — Find a business you can start",
+      "h1": "Platform terms overview"
+    }
+  ],
+  "auth": {
+    "sessionEndpointStatus": 200,
+    "anonymousSignedIn": false,
+    "ssoStartStatus": 307,
+    "ssoRedirectDestination": "https://www.flameph.org/sso/authorize"
+  },
+  "accessibility": [
+    {
+      "viewport": "mobile",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 19,
+          "help": "Elements must meet minimum color contrast ratio thresholds"
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "nodes": 1,
+          "help": "Heading levels should only increase by one"
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "nodes": 1,
+          "help": "Elements must have their visible text as part of their accessible name"
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "nodes": 9,
+          "help": "All page content should be contained by landmarks"
+        }
+      ]
+    },
+    {
+      "viewport": "desktop",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 19,
+          "help": "Elements must meet minimum color contrast ratio thresholds"
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "nodes": 1,
+          "help": "Heading levels should only increase by one"
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "nodes": 1,
+          "help": "Elements must have their visible text as part of their accessible name"
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "nodes": 9,
+          "help": "All page content should be contained by landmarks"
+        }
+      ]
+    }
+  ],
+  "responsive": [
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "viewport": "mobile",
+      "horizontalOverflowPixels": 0,
+      "screenshot": "docs/baseline-results/mobile-fulfillment.png"
+    },
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "viewport": "desktop",
+      "horizontalOverflowPixels": 0,
+      "screenshot": "docs/baseline-results/desktop-fulfillment.png"
+    }
+  ],
+  "performance": {
+    "mobile": {
+      "scores": {
+        "performance": 42,
+        "accessibility": 94,
+        "best-practices": 96,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaintMs": 2657.4249,
+        "largestContentfulPaintMs": 20019.57020000001,
+        "cumulativeLayoutShift": 0,
+        "totalBlockingTimeMs": 1709.9438
+      }
+    },
+    "desktop": {
+      "scores": {
+        "performance": 51,
+        "accessibility": 94,
+        "best-practices": 96,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaintMs": 1669.1929,
+        "largestContentfulPaintMs": 15734.264900000002,
+        "cumulativeLayoutShift": 0.04017004584316542,
+        "totalBlockingTimeMs": 282.30240000000003
+      }
+    }
+  },
+  "pageErrors": []
+}
