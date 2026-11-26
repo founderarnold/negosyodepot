@@ -1,12 +1,14 @@
-const CACHE_NAME = "negosyodepot-shell-v5";
+const CACHE_NAME = "negosyodepot-shell-v6";
 const SHELL = [
   "/",
   "/index.html",
   "/styles-fulfillment.css?v=4",
   "/design-system.css?v=16",
-  "/app-fulfillment.js?v=6",
+  "/app-fulfillment.js?v=7",
   "/extras-fulfillment.js?v=1",
   "/redesign.js?v=14",
+  "/fulfillment-by-msmes.js?v=3",
+  "/franchise-guides.js?v=1",
   "/pwa.js?v=2",
   "/ecosystem-footer.js?v=1",
   "/ecosystem-footer.css?v=1",
@@ -18,7 +20,7 @@ const SHELL = [
 ];
 const STATIC_PATHS = new Set([
   "/", "/index.html", "/styles-fulfillment.css", "/design-system.css",
-  "/app-fulfillment.js", "/extras-fulfillment.js", "/redesign.js", "/pwa.js", "/ecosystem-footer.js", "/ecosystem-footer.css",
+  "/app-fulfillment.js", "/extras-fulfillment.js", "/redesign.js", "/fulfillment-by-msmes.js", "/franchise-guides.js", "/pwa.js", "/ecosystem-footer.js", "/ecosystem-footer.css",
   "/manifest.webmanifest", "/assets/app-icon-192.png", "/assets/app-icon-512.png",
   "/assets/negosyodepot-logo.png", "/assets/negosyodepot-mark.png"
 ]);
