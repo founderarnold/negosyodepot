@@ -10,6 +10,7 @@
     "test:db-contract": "node scripts/validate-fulfillment-migration.mjs",
     "test:baseline:live": "node scripts/capture-live-baseline.mjs",
     "test:routes": "node tests/public-routes.mjs",
+    "test:home": "node tests/home-experience.mjs",
     "local:supabase:start": "supabase start",
     "local:supabase:stop": "supabase stop",
     "local:supabase:reset": "supabase db reset",

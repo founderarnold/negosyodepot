@@ -1,4 +1,4 @@
-const CACHE_NAME = "negosyodepot-shell-v8";
+const CACHE_NAME = "negosyodepot-shell-v9";
 const SHELL = [
   "/",
   "/index.html",
@@ -11,6 +11,8 @@ const SHELL = [
   "/fulfillment-by-msmes.js?v=4",
   "/franchise-guides.js?v=1",
   "/information-architecture.js?v=1",
+  "/home-experience.css?v=1",
+  "/home-experience.js?v=1",
   "/pwa.js?v=2",
   "/ecosystem-footer.js?v=1",
   "/ecosystem-footer.css?v=1",
@@ -18,13 +20,14 @@ const SHELL = [
   "/assets/app-icon-192.png",
   "/assets/app-icon-512.png",
   "/assets/negosyodepot-logo.png",
-  "/assets/negosyodepot-mark.png"
+  "/assets/negosyodepot-mark.png",
+  "/assets/business-paths-atlas.webp"
 ];
 const STATIC_PATHS = new Set([
   "/", "/index.html", "/styles-fulfillment.css", "/design-system.css",
-  "/app-fulfillment.js", "/extras-fulfillment.js", "/redesign.js", "/fulfillment-by-msmes.css", "/fulfillment-by-msmes.js", "/franchise-guides.js", "/information-architecture.js", "/pwa.js", "/ecosystem-footer.js", "/ecosystem-footer.css",
+  "/app-fulfillment.js", "/extras-fulfillment.js", "/redesign.js", "/fulfillment-by-msmes.css", "/fulfillment-by-msmes.js", "/franchise-guides.js", "/information-architecture.js", "/home-experience.css", "/home-experience.js", "/pwa.js", "/ecosystem-footer.js", "/ecosystem-footer.css",
   "/manifest.webmanifest", "/assets/app-icon-192.png", "/assets/app-icon-512.png",
-  "/assets/negosyodepot-logo.png", "/assets/negosyodepot-mark.png"
+  "/assets/negosyodepot-logo.png", "/assets/negosyodepot-mark.png", "/assets/business-paths-atlas.webp"
 ]);
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
