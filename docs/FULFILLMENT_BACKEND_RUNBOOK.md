@@ -13,6 +13,9 @@ The checked-in Supabase configuration uses project ID `negosyodepot-phase1` and 
 5. Run `npm run test:db-local` to rebuild the disposable database from migrations and execute the structural and behavioral RLS tests.
 6. Run `npm run test:db-contract` for the static migration contract checks.
 7. Run `npm run test:fulfillment-local` to verify identity linking, idempotent application creation, and owner listing through the server APIs.
+8. Run `npm run local:app`, then use `npm run local:doctor` for a secret-safe health check.
+
+Open the member-facing app at `http://127.0.0.1:3000/fulfillmentbymsmes`. Open database administration at `http://127.0.0.1:57323/project/default`. Do not use `http://127.0.0.1:57321/` as a web page: it is the Supabase service gateway, so `no Route matched with those values` at the bare root is expected. Its health endpoints are checked by `npm run local:doctor`.
 
 Use only synthetic data locally. `NEXT_PUBLIC_FULFILLMENT_ENABLED=true` belongs only in the ignored local environment. Hosted environments remain disabled until the separate release gate is approved.
 

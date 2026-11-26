@@ -12,6 +12,8 @@
     "local:supabase:stop": "supabase stop",
     "local:supabase:reset": "supabase db reset",
     "local:supabase:env": "node scripts/configure-local-supabase.mjs",
+    "local:app": "next dev --hostname 0.0.0.0 --port 3000",
+    "local:doctor": "node scripts/local-doctor.mjs",
     "test:db-local": "node scripts/test-local-supabase.mjs",
     "test:fulfillment-local": "node scripts/smoke-local-fulfillment.mjs"
   },

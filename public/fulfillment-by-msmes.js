@@ -54,6 +54,49 @@
     },
   };
 
+  const defaultMetadata = {
+    title: "NegosyoDepot — Find a business you can start",
+    description: "Discover negosyo packages, franchises, reseller opportunities and expansion partners. Find a business. Start a Negosyo. Grow with FLAME PH.",
+  };
+  const fulfillmentMetadata = {
+    overview: {
+      title: "Fulfillment by MSMEs | NegosyoDepot",
+      description: "Connect MSME brands with reviewed hubs, B2B logistics, and qualified providers through NegosyoDepot and the FLAME PH ecosystem.",
+    },
+    brands: {
+      title: "MSME Brand Fulfillment | NegosyoDepot",
+      description: "Prepare an MSME brand for reviewed hubs, local distribution, storage, packing, dispatch, and qualified B2B connections.",
+    },
+    hubs: {
+      title: "Micro-Fulfillment Hubs | NegosyoDepot",
+      description: "Prepare a micro-fulfillment hub capability profile covering facilities, service areas, capacity, controls, and availability.",
+    },
+    logistics: {
+      title: "B2B Logistics Providers | NegosyoDepot",
+      description: "Prepare B2B delivery, trucking, freight, or mobility capabilities with clear lanes, schedules, constraints, and proof controls.",
+    },
+    providers: {
+      title: "B2B Service Providers | NegosyoDepot",
+      description: "Prepare a reviewed B2B capability profile for supply, wholesale, manufacturing, professional, and enterprise services.",
+    },
+  };
+
+  function setMetadata(metadata) {
+    document.title = metadata.title;
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute("content", metadata.description);
+  }
+
+  function updateMetadataFromHash() {
+    const path = location.hash.slice(1).split("?")[0] || "/";
+    if (!path.startsWith("/fulfillmentbymsmes")) {
+      setMetadata(defaultMetadata);
+      return;
+    }
+    const slug = path.split("/")[2] || "overview";
+    setMetadata(fulfillmentMetadata[slug] || fulfillmentMetadata.overview);
+  }
+
   function roleCard(slug, icon, title, text) {
     return `<a class="fbm-role-card" href="#/fulfillmentbymsmes/${slug}">
       <span class="fbm-role-icon" aria-hidden="true">${icon}</span>
@@ -134,8 +177,12 @@
 
   window.fulfillmentByMsmesPage = function (path) {
     const slug = path.split("/")[2] || "";
+    setMetadata(fulfillmentMetadata[slug] || fulfillmentMetadata.overview);
     return journeys[slug] ? rolePage(slug, journeys[slug]) : overview();
   };
+
+  window.addEventListener("hashchange", () => requestAnimationFrame(updateMetadataFromHash));
+  updateMetadataFromHash();
 
   fulfillmentMegaMenus = function () {
     return `${link("/", "Home", "top-nav-link")}
