@@ -186,12 +186,14 @@
 
   fulfillmentMegaMenus = function () {
     return `${link("/", "Home", "top-nav-link")}
+      ${link("/explore", "Buy or Start a Business", "top-nav-link")}
+      ${link("/sell-business", "Sell or Pasalo a Business", "top-nav-link")}
       ${link("/buy-franchise", "Buy Franchise", "top-nav-link")}
       ${link("/sell-franchise", "Sell Franchise", "top-nav-link")}
       ${link("/fulfillmentbymsmes", "Fulfillment by MSMEs", "top-nav-link")}
       ${link("/dashboard", "My Workspace", "top-nav-link")}
       <details class="mega-menu more-menu"><summary>More</summary><div class="mega-panel"><div class="more-links">
-        ${link("/explore", "Buy or Start a Business")}${link("/sell-business", "Sell or Pasalo a Business")}${link("/fulfillmentbymsmes/providers", "B2B Network")}${link("/funder-finder", "Funder Finder")}${link("/investor-funder", "Investor/Funder")}${link("/looking-for", "Looking for")}${link("/resources", "Resources")}${link("/ecosystem", "FLAME PH ecosystem")}${link("/trust", "Trust & safety")}
+        ${link("/dashboard", "My Workspace", "workspace-more-link")}${link("/fulfillmentbymsmes/providers", "B2B Network")}${link("/funder-finder", "Funder Finder")}${link("/investor-funder", "Investor/Funder")}${link("/looking-for", "Looking for")}${link("/resources", "Resources")}${link("/ecosystem", "FLAME PH ecosystem")}${link("/trust", "Trust & safety")}
       </div></div></details>`;
   };
 
